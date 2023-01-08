@@ -6,3 +6,6 @@
 
 [twitter developer documention](https://developer.twitter.com/en/docs)
 
+[how to use twitter api v2](https://www.youtube.com/watch?v=0EekpQBEP_8&list=WL&index=3&t=307s)
+
+[twitter developer on github](https://github.com/twitterdev)
