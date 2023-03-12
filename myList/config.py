@@ -1,0 +1,7 @@
+api_key = 'UHsmm4wn1XjiCJ4EyDER2Ys1g'
+api_key_secret = 'YNYX4LDK1proe4nyL7q7K9wkq6qz2bRbq0al4GG2df8FGmYLRK'
+
+bear_token = 'AAAAAAAAAAAAAAAAAAAAAFFLlAEAAAAA71tnDgI6vXrQ9%2BGnMKuXg7cZfG0%3DMtIPdyqSY4tQv0oDcf6KJx939IkYJYAuzhFUon3IJuMc4RmT7N'
+
+access_token = '1611584283248054273-yJjZR6MLZvKyzhCRhKt1eMqxmAYdHg'
+access_token_secret = 'qM8t4DCRon5G77FFV2lNBcyEjYfLWKTFjEtm4O2JZiLKk'

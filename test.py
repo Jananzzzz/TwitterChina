@@ -1,8 +1,7 @@
-dict = {
-    1: "sdjdlsf",
-    2: "dsfjaksdf",
-    3: "ddfdf"
-}
+from datetime import date, datetime, timedelta
 
-for i in dict:
-    print(i, dict[i])
+today = datetime.now()
+yesterday = today - timedelta(days=12)
+
+print(str(today))
+print(str(yesterday))

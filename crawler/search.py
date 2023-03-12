@@ -8,13 +8,19 @@ query = "openai -is:retweet"
 response = client.search_recent_tweets(query=query,
                                        max_results=10,
                                        tweet_fields=['created_at', 'lang'],
+                                       user_fields=['profile_image_url'],
                                        expansions=['author_id'])
+
+users = {u['id']: u for u in response.includes['users']}
                                         
 counter = 0
 for tweet in response.data:
-    counter += 1
-    print(tweet.id, tweet.created_at, tweet.lang)
-    print(f"----------------------------------------------------{counter}")
+    if users[tweet.author_id]:
+        user = users[tweet.author_id]
+        counter += 1
+        print(tweet.id, tweet.created_at, tweet.lang)
+        print(user.profile_image_url)
+        print(f"----------------------------------------------------{counter}")
 
 # client = tweepy.Client(bearer_token=config.bear_token)
 # query = "covid -is:retweet"
