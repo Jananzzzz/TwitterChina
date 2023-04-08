@@ -45,18 +45,14 @@ def get_followers():
     params = get_params()
     json_response = connect_to_endpoint(url, params)
     # print(json.dumps(json_response, indent=4, sort_keys=True))
-    json_list = json.dumps(json_response, indent=4, sort_keys=True)  
-    user_list = json.loads(json_list)
-    #print(type(user_list))
-    #print(user_list['data'][0]['username'])
-    #print(len(user_list['data']))
-    for i in user_list['data']:
-        print(i['name'])
+    username_list = []
+    for i in json_response['data']:
+        username_list.append(i['username'])
+    return username_list
 
 
 if __name__ == "__main__":
-    username_list = [
-        "lidangzzz",
-        "bboczeng",
-    ]
-    get_uid.get_uid(username_list)
+    username_list = get_followers()
+    userid_list = get_uid.get_uid(username_list)
+    for i in range(100):
+        print(userid_list[i], username_list[i])

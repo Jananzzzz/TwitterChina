@@ -1,5 +1,4 @@
 import requests
-import os
 import json
 
 # To set your enviornment variables in your terminal run the following line:
@@ -10,10 +9,13 @@ bearer_token = "AAAAAAAAAAAAAAAAAAAAAFFLlAEAAAAA71tnDgI6vXrQ9%2BGnMKuXg7cZfG0%3D
 def create_url(username_list):
     # Specify the usernames that you want to lookup below
     # You can enter up to 100 comma-separated values.
-    usernames = "usernames=fananshi"
+    usernames = "usernames="
     for i in username_list:
-        usernames +=","+i
-    user_fields = "user.fields=description,created_at"
+        if i == username_list[0]:
+            usernames += i
+        else:
+            usernames +=","+i
+    user_fields = "user.fields=created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld"
     # User fields are adjustable, options include:
     # created_at, description, entities, id, location, name,
     # pinned_tweet_id, profile_image_url, protected,
@@ -47,14 +49,25 @@ def connect_to_endpoint(url):
 def get_uid(username_list):
     url = create_url(username_list)
     json_response = connect_to_endpoint(url)
+    uid_list = []
     for i in json_response['data']:
-        print(i['id'])
+        uid_list.append(i['id'])
+    return uid_list
     # print(json.dumps(json_response, indent=4, sort_keys=True))
+
+def get_user_info(username_list):
+    url = create_url(username_list)
+    json_response = connect_to_endpoint(url)
+    print(json.dumps(json_response, indent=4, sort_keys=True))
+    info_list = json_response['data']
+    return info_list
+
+
 
 
 if __name__ == "__main__":
     username_list = [
-        "lidangzzz",
-        "bboczeng",
+        "fananshi",
     ]
-    get_uid(username_list)
+    # get_uid(username_list)
+    print(get_user_info(username_list))
