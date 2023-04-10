@@ -58,7 +58,7 @@ def get_uid(username_list):
 def get_user_info(username_list):
     url = create_url(username_list)
     json_response = connect_to_endpoint(url)
-    print(json.dumps(json_response, indent=4, sort_keys=True))
+    # print(json.dumps(json_response, indent=4, sort_keys=True))
     info_list = json_response['data']
     return info_list
 

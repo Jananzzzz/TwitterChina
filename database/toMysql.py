@@ -1,28 +1,6 @@
 import mysql.connector
 import json
 
-
-"""
-# create the table
-CREATE TABLE account_info (
-  id BIGINT PRIMARY KEY,
-  username VARCHAR(255) NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  description TEXT,
-  location VARCHAR(255),
-  profile_image_url TEXT,
-  protected BOOLEAN,
-  verified BOOLEAN,
-  created_at DATETIME NOT NULL,
-  followers_count INT NOT NULL,
-  following_count INT NOT NULL,
-  listed_count INT NOT NULL,
-  tweet_count INT NOT NULL
-);
-
-
-"""
-
 example_data = [
    {
             "created_at": "2021-09-16T12:34:26.000Z",
@@ -86,3 +64,29 @@ for account in example_data:
 # commit the changes to the database and close the connection
 db.commit()
 db.close()
+
+
+
+
+
+
+"""
+# create the table
+CREATE TABLE  (
+  id BIGINT PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  location VARCHAR(255),
+  profile_image_url TEXT,
+  protected BOOLEAN,
+  verified BOOLEAN,
+  created_at DATETIME NOT NULL,
+  followers_count INT NOT NULL,
+  following_count INT NOT NULL,
+  listed_count INT NOT NULL,
+  tweet_count INT NOT NULL
+);
+
+
+"""

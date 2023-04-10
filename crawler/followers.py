@@ -1,7 +1,9 @@
 import requests
+import mysql.connector
+import pprint
 import os
 import json
-import get_uid
+import get_userinfo
 
 # To set your environment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
@@ -50,9 +52,54 @@ def get_followers():
         username_list.append(i['username'])
     return username_list
 
+def write_to_database(user_list):
+
+    db = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="060920",
+        database="twitter"
+    )
+
+    cursor = db.cursor()
+
+    sql = """INSERT INTO account_info (
+             id, username, name, description, location, profile_image_url, protected, verified, created_at,
+             followers_count, following_count, listed_count, tweet_count
+           ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+
+    for account in user_list:
+
+        id = account["id"]
+        username = account["username"]
+        name = account["name"]
+        description = account["description"]
+        try:
+            location = account["location"]
+        except:
+            location = None
+        profile_image_url = account["profile_image_url"]
+        protected = account["protected"]
+        verified = account["verified"]
+        created_at = account["created_at"]
+        followers_count = account["public_metrics"]["followers_count"]
+        following_count = account["public_metrics"]["following_count"]
+        listed_count = account["public_metrics"]["listed_count"]
+        tweet_count = account["public_metrics"]["tweet_count"]
+
+        # insert the account info into the account_info table
+        values = (id, username, name, description, location, profile_image_url, protected, verified, created_at,
+                  followers_count, following_count, listed_count, tweet_count)
+        cursor.execute(sql, values)
+
+    # commit the changes to the database and close the connection
+    db.commit()
+    db.close()
+        
+
 
 if __name__ == "__main__":
     username_list = get_followers()
-    userid_list = get_uid.get_uid(username_list)
-    for i in range(100):
-        print(userid_list[i], username_list[i])
+    user_list = get_userinfo.get_user_info(username_list)
+    pprint.pprint(user_list[0])
+    write_to_database(user_list)
