@@ -1,1 +1,0 @@
-# decide whether a user have some relation to china
