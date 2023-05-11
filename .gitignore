@@ -3,5 +3,5 @@ config.ini
 crawler/config.py
 /test
 /venv_twint/
-/twint/twint_fork.egg-info/
-/twint/databases/
+twint/twint_fork.egg-info/
+twint/databases/
