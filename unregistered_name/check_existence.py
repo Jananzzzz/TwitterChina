@@ -7,28 +7,36 @@ import pandas as pd
 from selenium.webdriver.common.keys import Keys
 from random import randint
 
-
 option = webdriver.ChromeOptions()
 
 # headless
-option.add_argument('--headless')
-
+# option.add_argument('--headless')
 option.add_experimental_option("excludeSwitches", ['enable-automation', 'enable-logging'])
-
-
 driver = webdriver.Chrome(options=option)
-# driver = webdriver.Chrome()
-print("going to https://twitter.com/asdfjasflasd")
-# send request
-driver.get("https://twitter.com/asdfjasflasd")
 
-time.sleep(3)
+id_list = [
+    "uzi",
+    "faker",
+]
 
-user_status = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[2]/main/div/div/div/div[1]/div/div[3]/div/div/div[2]/div/div[1]/span").text
+base_url = "https://twitter.com/"
+
+for id in id_list:
+
+    url = base_url + id
+    print(f"going to {url}")
+    driver.get(url)
+    time.sleep(2)
+    try:
+        user_status = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[2]/main/div/div/div/div[1]/div/div[3]/div/div/div[2]/div/div[1]/span").text
+        print(user_status)
+        print("")
+    except:
+        print("account exist.")
+        print("")
 
 driver.quit()
 
-print(user_status)
 
 
 # userList = []
