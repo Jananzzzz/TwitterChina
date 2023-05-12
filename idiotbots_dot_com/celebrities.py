@@ -1,5 +1,7 @@
 import os
 import json
+import subprocess
+import time
 
 def form_list(list_name):
     list = []
@@ -13,9 +15,6 @@ def form_list(list_name):
                 if user_info[user_name] not in list:
                     list.append(user_info[user_name])
     
-    for idx, info in enumerate(list):
-        print(idx, info)
-
     # with open(f"/home/janan/TwitterChina/idiotbots_dot_com/data/{list_name}_list.json", "w") as f:
     #     dict = {}
     #     for idx, link in enumerate(list):
@@ -35,6 +34,32 @@ for j in activity_list:
     if j not in overall_list:
         overall_list.append(j)
 
+username_list = []
+for link in overall_list:
+    username_list.append(link[20:])
+
+
+
+
+
+command = "twint -u bboczeng --database bboczeng.db --following > /dev/null 2>&1"
+proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+# get the pid of the process
+pid  = proc.pid
+
+# check if the process is still running
+while proc.poll() is None:
+    print("Process is still running...")
+    time.sleep(3)
+
+if proc.returncode == 0:
+    print("Process finished successfully.")
+else:
+    print("Process finished with error or warning.")
+
+
+
 # with open(f"/home/janan/TwitterChina/idiotbots_dot_com/data/overall_list.json", "w") as f:
 #     dict = {}
 #     for idx, link in enumerate(overall_list):
@@ -44,7 +69,7 @@ for j in activity_list:
 
 # basic usage of twint:
 # twint -u bboczeng --database bboczeng.db --followers > /dev/null 2>&1 &
-# twint -u bboczeng --database bboczeng.db --followers > /dev/null 2>&1 &
+# twint -u bboczeng --database bboczeng.db --following > /dev/null 2>&1 &
 # twint --user-full --userlist inputlist.txt --database profiles.db
 
 # bash script case:

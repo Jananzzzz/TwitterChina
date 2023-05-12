@@ -5,3 +5,6 @@ crawler/config.py
 /venv_twint/
 twint/twint_fork.egg-info/
 twint/databases/
+/twint/
+
+/idiotbots_dot_com/data/celebrity_data/
