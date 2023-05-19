@@ -38,20 +38,16 @@ for i in upers_list:
 print(f"overall count: {len(discrete_list)}")
 
 
-# checklist= [
-#     "MiaBleem",
-#     "bboczeng",
-#     "haoel",
-#     "fndroid"
-# ]
+checklist= [
+    "MiaBleem",
+    "bboczeng",
+    "haoel",
+    "fndroid"
+]
 
-# for i in checklist:
-#     if i in discrete_list:
-#         print(f"{i} in discrete_list")
-
-
-conn = sqlite3.connect("/home/janan/TwitterChina/idiotbots_dot_com/data/profiles.db")
-cursor = conn.cursor()
+for i in checklist:
+    if i in discrete_list:
+        print(f"{i} in discrete_list")
 
 def timeout_handler(signum, frame):
     raise Exception("Timeout!")
@@ -90,8 +86,6 @@ for i in range(len(discrete_list)):
     # else:
     #     print(f"{username} already in database.")
     
-cursor.close()
-conn.close()
 end_time = time.time()
 print(f"Crawl Twitter of China core took time: {end_time - start_time}")
 
