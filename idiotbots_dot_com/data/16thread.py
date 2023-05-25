@@ -5,7 +5,7 @@ import sqlite3
 def crawl(thread_id):
     c = twint.Config()
     c.User_full = True
-    c.Database = f"/home/janan/TwitterChina/idiotbots_dot_com/data/profiles/profile{thread_id}.db"
+    c.Database = f"/home/janan/TwitterChina/idiotbots_dot_com/data/profiles2/profile{thread_id}.db"
     # database to list
     list = []
     conn = sqlite3.connect(f"/home/janan/TwitterChina/idiotbots_dot_com/data/profiles2/split_list{thread_id}.db")
@@ -40,7 +40,7 @@ def crawl(thread_id):
 if __name__ == "__main__":
 
     processes = []
-    thread_num = 14
+    thread_num = 20
     for thread in range(thread_num):
         p = multiprocessing.Process(target=crawl, args=(str(thread),))
         processes.append(p)
@@ -50,13 +50,4 @@ if __name__ == "__main__":
         process.join()
 
 
-"""
-86882
-86986
-87090
-87008
-87102
-82688
-86992
-"""
 
