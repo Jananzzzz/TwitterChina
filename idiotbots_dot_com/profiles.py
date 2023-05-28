@@ -11,6 +11,7 @@ import signal
 
 dirctory_path = "/home/janan/TwitterChina/idiotbots_dot_com/data/celebrity_data/"
 username_list = []
+count = 0
 for filename in os.listdir(dirctory_path):
     if filename.endswith(".db"):
         db_path = dirctory_path + filename
@@ -20,12 +21,15 @@ for filename in os.listdir(dirctory_path):
         cursor.execute(query)
         users = cursor.fetchall()
         print(len(users))
+        count += 1
         username_list.extend([user[0] for user in users])
         cursor.close()
         conn.close()
 
+print(f"overall following: {len(username_list)}")
+print(f"average following: {len(username_list)/count}")
 discrete_list = list(set(username_list))
-print(f"following count: {len(discrete_list)}")
+print(f"discret following: {len(discrete_list)}")
 
 upers_list = []
 with open("/home/janan/TwitterChina/idiotbots_dot_com/data/overall_list.json") as f:
@@ -37,6 +41,7 @@ for i in upers_list:
         discrete_list.append(i)
 print(f"overall count: {len(discrete_list)}")
 
+assert False
 
 checklist= [
     "MiaBleem",

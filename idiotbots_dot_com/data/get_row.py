@@ -10,6 +10,6 @@ def get_rows(database):
 	return count
 
 if __name__=="__main__":
-	for i in range(14):
-		print(get_rows(f"/home/janan/TwitterChina/idiotbots_dot_com/data/profiles2/split_list{i}.db"))
+	for i in range(16):
+		print(get_rows(f"/home/janan/TwitterChina/idiotbots_dot_com/data/new_split/split_list{i}.db"))
 
