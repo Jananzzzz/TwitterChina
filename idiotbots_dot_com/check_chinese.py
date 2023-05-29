@@ -12,23 +12,61 @@ def fetch_all_users(database):
     return users
 
 
-def check_chinese(user):
+# check name and bio and location whether it contains chinese
+def check_chinese_character(text):
+    for ch in text:
+        if u'\u4e00' <= ch <= u'\u9fff':
+            return True
+    return False
+    
+def check_japanese_character(text):
+    for ch in text:
+        if u'\u0800' <= ch < u'\u4e00':
+            return True
+    return False
 
-    # check name and bio and location whether it contains chinese
-    def check_chinese_character(text):
-        for ch in text:
-            if u'\u4e00' <= ch <= u'\u9fff':
-                return True
-        return False
-    
-    def check_japanese_character(text):
-        for ch in text:
-            if u'\u0800' <= ch <= u'\u4e00':
-                return True
-        return False
-    
-    def convert_to_pinyin(text):
-        pinyin_text = lazy_pinyin(text)
+def check_chinese(user):
+    user["bio"] = user["bio"].replace("。", ".")
+    user["bio"] = user["bio"].replace("、", ",")
+    user["bio"] = user["bio"].replace("，", ",")
+    user["bio"] = user["bio"].replace("；", ";")
+    user["bio"] = user["bio"].replace("：", ":")
+    user["bio"] = user["bio"].replace("？", "?")
+    user["bio"] = user["bio"].replace("！", "!")
+    user["bio"] = user["bio"].replace("（", "(")
+    user["bio"] = user["bio"].replace("）", ")")
+    user["bio"] = user["bio"].replace("【", "[")
+    user["bio"] = user["bio"].replace("】", "]")
+    user["bio"] = user["bio"].replace("《", "<")
+    user["bio"] = user["bio"].replace("》", ">")
+    user["bio"] = user["bio"].replace("“", "\"")
+    user["bio"] = user["bio"].replace("”", "\"")
+    user["bio"] = user["bio"].replace("‘", "\'")
+    user["bio"] = user["bio"].replace("’", "\'")
+    user["bio"] = user["bio"].replace("—", "-")
+    user["bio"] = user["bio"].replace("～", "~")
+    user["bio"] = user["bio"].replace("…", "...")
+    user["bio"] = user["bio"].replace("￥", "$")
+    user["bio"] = user["bio"].replace("＄", "$")
+    user["bio"] = user["bio"].replace("％", "%")
+    user["bio"] = user["bio"].replace("＆", "&")
+    user["bio"] = user["bio"].replace("＊", "*")
+    user["bio"] = user["bio"].replace("＋", "+")
+    user["bio"] = user["bio"].replace("－", "-")
+    user["bio"] = user["bio"].replace("／", "/")
+    user["bio"] = user["bio"].replace("＝", "=")
+    user["bio"] = user["bio"].replace("＠", "@")
+    user["bio"] = user["bio"].replace("＃", "#")
+    user["bio"] = user["bio"].replace("＜", "<")
+    user["bio"] = user["bio"].replace("＞", ">")
+    user["bio"] = user["bio"].replace("［", "[")
+    user["bio"] = user["bio"].replace("］", "]")
+    user["bio"] = user["bio"].replace("｛", "{")
+    user["bio"] = user["bio"].replace("｝", "}")
+    user["bio"] = user["bio"].replace("｜", "|")
+    user["bio"] = user["bio"].replace("＼", "\\")
+    user["bio"] = user["bio"].replace("＿", "_")
+    user["bio"] = user["bio"].replace("｀", "`")
     
     # check location
     def check_location(location):
@@ -47,8 +85,14 @@ def check_chinese(user):
             return False
         return False
 
-    # User['name'], User['bio'], User['location'] contain chinese character but don't contain japanese character, or User['location'] is in china
-    if (check_chinese_character(user['name']) and check_japanese_character(user['name']) == False) or (check_chinese_character(user['bio']) and check_japanese_character(user['bio']) == False) or check_location(user['location']):
+    # if location is true
+    if check_location(user["location"]):
+        return True
+    # if name is pure chinese and bio don't contain japanese
+    elif check_chinese_character(user["name"]) and not check_japanese_character(user["name"]) and not check_japanese_character(user["bio"]):
+        return True
+    # if bio contain chinese and don't contain japanese
+    elif check_chinese_character(user["bio"]) and not check_japanese_character(user["bio"]):
         return True
     else:
         return False
@@ -58,10 +102,10 @@ def check_chinese(user):
 
 # check existence of a user
 def check_existence(username):
-    users = fetch_all_users("idiotbots_dot_com/data/profiles/profile2.db")
+    users = fetch_all_users("idiotbots_dot_com/data/profiles/profile_test.db")
     usernamelist = []
     for row in users:
-        usernamelist.append(row[3])
+        usernamelist.append(row[3].lower())
     if username.lower() in usernamelist:
         print(f"{username} exists!")
     else:
@@ -112,15 +156,12 @@ def distribution(users):
 
 if __name__=="__main__":
     not_exist = [
-        'yihong0618',
-        'miableem',
-        'nmslesebot',
-        'realbingbingfan',
     ]
-    # check_existence("whyyoutouzhele")
-
+    for user in not_exist:
+        check_existence(user)
     
-    users = fetch_all_users("idiotbots_dot_com/data/profiles/profile2.db")
+
+    users = fetch_all_users("idiotbots_dot_com/data/profiles/profile_test.db")
     # distribution(users)
     chinese_users = []
     for row in users:
@@ -135,8 +176,11 @@ if __name__=="__main__":
         } 
         if check_chinese(user):
             chinese_users.append(row)
-    print(f"chinese users:{len(chinese_users)}")
-    # distribution(chinese_users)
-    chinese_users.sort(key=lambda x: x[11], reverse=True)
-    for i in range(100):
-        print(chinese_users[i][2], chinese_users[i][3], chinese_users[i][11])
+        
+    distribution(chinese_users)
+
+    # chinese_users.sort(key=lambda x: x[11], reverse=True)
+    # for i in range(200):
+    #     print(i, chinese_users[i][2], chinese_users[i][3], chinese_users[i][11])
+    # print(f"chinese users:{len(chinese_users)}")
+
