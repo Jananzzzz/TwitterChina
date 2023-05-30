@@ -7,12 +7,19 @@ twint/twint_fork.egg-info/
 twint/databases/
 /twint/
 
-/idiotbots_dot_com/data/celebrity_data/
-/idiotbots_dot_com/data/backup/
-/idiotbots_dot_com/data/profiles/
-/idiotbots_dot_com/data/new_profile0/
-/idiotbots_dot_com/data/new_split/
-/idiotbots_dot_com/data/big_name_followers/
+/bigname/data/celebrity_data/
+/bigname/data/backup/
+/bigname/data/profiles/
+/bigname/data/new_profile0/
+/bigname/data/new_split/
+/bigname/data/big_name_followers/
+/bigname/data/split/
+/bigname/data/activity/
+/bigname/data/popularity/
+/bigname/data/activity_list.json
+/bigname/data/famous_profile.db
+/bigname/data/popularity_list.json
+/bigname/data/username_list.json
 
 /.vscode/
 __pycache__/

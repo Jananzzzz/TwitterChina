@@ -46,9 +46,11 @@ def check_location(location):
     location1 = location.split(" ")
     for i in location0:
         if i.lower() in china_locations or i in china_locations_in_chinese_character:
+            print(i)
             return True
     for j in location1:
         if j.lower() in china_locations or j in china_locations_in_chinese_character:
+            print(i)
             return True
     if location is None:
         return False
@@ -167,32 +169,37 @@ def distribution(users):
 
 if __name__=="__main__":
     not_exist = [
+        'dishouru',
+        'silosrc',
+        'asukastark0123',
     ]
-    for user in not_exist:
+    check_exist = [
+    ]
+    for user in check_exist:
         check_existence(user)
 
-    users = fetch_all_users("idiotbots_dot_com/data/profiles/profile_test.db")
+    # users = fetch_all_users("idiotbots_dot_com/data/profiles/profile_test.db")
 
-    # distribution(users)
     
-    chinese_users = []
-    for row in users:
-        user = {
-            "name": row[2],
-            "username": row[3],
-            "bio": row[4],
-            "location": row[5],
-            "tweet": row[9],
-            "following": row[10],
-            "followers": row[11],
-        } 
-        if check_chinese(user):
-            chinese_users.append(row)
+    # chinese_users = []
+    # for row in users:
+    #     user = {
+    #         "name": row[2],
+    #         "username": row[3],
+    #         "bio": row[4],
+    #         "location": row[5],
+    #         "tweet": row[9],
+    #         "following": row[10],
+    #         "followers": row[11],
+    #     } 
+    #     if check_chinese(user):
+    #         chinese_users.append(row)
         
+
+    # chinese_users.sort(key=lambda x: x[11], reverse=True)
+    # for i in range(200):
+    #     print(i, chinese_users[i][2], chinese_users[i][3], chinese_users[i][11])
+    # print(f"chinese users:{len(chinese_users)}")
+
+
     # distribution(chinese_users)
-
-    chinese_users.sort(key=lambda x: x[11], reverse=True)
-    for i in range(200):
-        print(i, chinese_users[i][2], chinese_users[i][3], chinese_users[i][11])
-    print(f"chinese users:{len(chinese_users)}")
-

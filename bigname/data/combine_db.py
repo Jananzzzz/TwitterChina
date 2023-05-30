@@ -14,7 +14,7 @@ def merge_database(database1, database2):
 if __name__=="__main__":
     for i in range(1, 16):
         try:
-            merge_database("idiotbots_dot_com/data/profiles/profile2.db", "idiotbots_dot_com/data/new_profile0/profile"+ str(i) + ".db")
+            merge_database("bigname/data/profiles/profile2.db", "bigname/data/new_profile0/profile"+ str(i) + ".db")
             print("Merged profile" + str(i) + ".db successfully!")
         except Exception as e:
             print("Error: " + str(e))
