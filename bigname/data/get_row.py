@@ -11,5 +11,5 @@ def get_rows(database):
 
 if __name__=="__main__":
 	for i in range(16):
-		print(get_rows(f"/home/janan/TwitterChina/idiotbots_dot_com/data/new_split/split_list{i}.db"))
+		print(get_rows(f"/home/janan/TwitterChina/bigname/data/split/split_list{i}.db"))
 

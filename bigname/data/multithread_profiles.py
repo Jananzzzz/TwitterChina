@@ -5,10 +5,10 @@ import sqlite3
 def crawl(thread_id):
     c = twint.Config()
     c.User_full = True
-    c.Database = f"/home/janan/TwitterChina/idiotbots_dot_com/data/new_profile0/profile{thread_id}.db"
+    c.Database = f"/home/janan/TwitterChina/bigname/data/crawled_profile/profile{thread_id}.db"
     # database to list
     list = []
-    conn = sqlite3.connect(f"/home/janan/TwitterChina/idiotbots_dot_com/data/new_split/split_list{thread_id}.db")
+    conn = sqlite3.connect(f"/home/janan/TwitterChina/bigname/data/split/split_list{thread_id}.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM following_names;")
     rows = cursor.fetchall()
@@ -26,7 +26,7 @@ def crawl(thread_id):
             print(f"Thread {thread_id}: Profile lookup for {username} completed.")
             print("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
             # remove the user in split_list database
-            conn = sqlite3.connect(f"/home/janan/TwitterChina/idiotbots_dot_com/data/new_split/split_list{thread_id}.db")
+            conn = sqlite3.connect(f"/home/janan/TwitterChina/bigname/data/split/split_list{thread_id}.db")
             cursor = conn.cursor()
             cursor.execute(f"DELETE FROM following_names WHERE user = '{username}';")
             conn.commit()

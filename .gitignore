@@ -10,7 +10,7 @@ twint/databases/
 /bigname/data/celebrity_data/
 /bigname/data/backup/
 /bigname/data/profiles/
-/bigname/data/new_profile0/
+/bigname/data/crawled_profile/
 /bigname/data/new_split/
 /bigname/data/big_name_followers/
 /bigname/data/split/
@@ -20,6 +20,8 @@ twint/databases/
 /bigname/data/famous_profile.db
 /bigname/data/popularity_list.json
 /bigname/data/username_list.json
+
+palm/config.py
 
 /.vscode/
 __pycache__/
