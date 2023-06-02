@@ -9,7 +9,6 @@
 			1. on name
 			2. on bio
 			3. on location
-			4. on tweets (not recommend)
+			4. on tweets (high cost)
 		- decide account type: porn, tech, taiwannese, hongkonger, politic, entertainment, life sharing, etc.
-3. crawl the followers of these tweeters and their information
-	- the full user info will take a long while
+3. use twitter api or crawler, fetch the core users' tweets, analyze them get to get the latest hotspot in ToC.

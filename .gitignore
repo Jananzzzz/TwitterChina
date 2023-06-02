@@ -21,6 +21,9 @@ twint/databases/
 /bigname/data/popularity_list.json
 /bigname/data/username_list.json
 
+
+/api/config.py
+
 palm/config.py
 
 /.vscode/

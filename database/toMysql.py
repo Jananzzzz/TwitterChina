@@ -3,11 +3,11 @@ import json
 
 example_data = [
    {
-            "created_at": "2021-09-16T12:34:26.000Z",
+            "created_at": "2019-09-16T12:34:26.000Z",
             "description": "Yes, I am lazy..",
-            "id": "1438481337569067008",
-            "location": "United States",
-            "name": "Fananshi\ud83c\udf7b",
+            "id": "143848337569067008",
+            "location": "UK",
+            "name": "Fananshi",
             "profile_image_url": "https://pbs.twimg.com/profile_images/1630090968216260608/IUu5XsZh_normal.jpg",
             "protected": False,
             "public_metrics": {
