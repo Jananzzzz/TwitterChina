@@ -5,7 +5,7 @@ import time
 
 def form_list(list_name):
     list = []
-    folder_path = f"/home/janan/TwitterChina/idiotbots_dot_com/data/{list_name}"
+    folder_path = f"/home/janan/TwitterChina/bigname/data/{list_name}"
     file_list = os.listdir(folder_path)
     for file_name in file_list:
         file_path = os.path.join(folder_path, file_name)
@@ -15,7 +15,7 @@ def form_list(list_name):
                 if user_info[user_name] not in list:
                     list.append(user_info[user_name])
     
-    # with open(f"/home/janan/TwitterChina/idiotbots_dot_com/data/{list_name}_list.json", "w") as f:
+    # with open(f"/home/janan/TwitterChina/bigname/data/{list_name}_list.json", "w") as f:
     #     dict = {}
     #     for idx, link in enumerate(list):
     #         dict[f"{idx}"] = link
@@ -60,7 +60,7 @@ else:
 
 
 
-# with open(f"/home/janan/TwitterChina/idiotbots_dot_com/data/overall_list.json", "w") as f:
+# with open(f"/home/janan/TwitterChina/bigname/data/overall_list.json", "w") as f:
 #     dict = {}
 #     for idx, link in enumerate(overall_list):
 #         dict[f"{idx}"] = link

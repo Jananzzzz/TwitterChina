@@ -115,7 +115,7 @@ def check_chinese(user):
 
 # check existence of a user
 def check_existence(username):
-    users = fetch_all_users("idiotbots_dot_com/data/profiles/profile_test.db")
+    users = fetch_all_users("bigname/data/profiles/profile_test.db")
     usernamelist = []
     for row in users:
         usernamelist.append(row[3].lower())
@@ -178,7 +178,7 @@ if __name__=="__main__":
     for user in check_exist:
         check_existence(user)
 
-    # users = fetch_all_users("idiotbots_dot_com/data/profiles/profile_test.db")
+    # users = fetch_all_users("bigname/data/profiles/profile_test.db")
 
     
     # chinese_users = []

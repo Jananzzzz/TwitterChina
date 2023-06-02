@@ -6,7 +6,7 @@ import subprocess
 
 username_list = []
 # fetch failed list
-with open("/home/janan/TwitterChina/idiotbots_dot_com/data/celebrity_data/failed_list.json", "r") as f:
+with open("/home/janan/TwitterChina/bigname/data/celebrity_data/failed_list.json", "r") as f:
     failed_list = json.load(f)  
     for user in failed_list:
         username_list.append(failed_list[user])
@@ -26,7 +26,7 @@ user_list = [
 ]
 
 
-command_template = "twint -u {user} --database idiotbots_dot_com/data/celebrity_data/{user}.db --following > /dev/null 2>&1"
+command_template = "twint -u {user} --database bigname/data/celebrity_data/{user}.db --following > /dev/null 2>&1"
 
 # create a cycle that will cycle through the list of users indefinitely
 user_cycle = itertools.cycle(username_list)
@@ -81,14 +81,14 @@ try:
 except Exception as e:
     print(e)
 
-with open(f"/home/janan/TwitterChina/idiotbots_dot_com/data/celebrity_data/finished_list.json", "w") as f: 
+with open(f"/home/janan/TwitterChina/bigname/data/celebrity_data/finished_list.json", "w") as f: 
     dict = {} 
     for idx, user in enumerate(already_finished): 
         dict[f"{idx}"] = user 
     json_data = json.dumps(dict, indent=4) 
     f.write(json_data)
 
-with open(f"/home/janan/TwitterChina/idiotbots_dot_com/data/celebrity_data/failed_list.json", "w") as f:
+with open(f"/home/janan/TwitterChina/bigname/data/celebrity_data/failed_list.json", "w") as f:
     dict = {}
     for idx, user in enumerate(failed):
         dict[f"{idx}"] = user

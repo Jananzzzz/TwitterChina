@@ -2,7 +2,7 @@ import sqlite3
 import json
 import os
 
-dirctory_path = "/home/janan/TwitterChina/idiotbots_dot_com/data/celebrity_data/"
+dirctory_path = "/home/janan/TwitterChina/bigname/data/celebrity_data/"
 username_list = []
 for filename in os.listdir(dirctory_path):
     if filename.endswith(".db"):
@@ -21,7 +21,7 @@ discrete_list = list(set(username_list))
 print(f"following count: {len(discrete_list)}")
 
 upers_list = []
-with open("/home/janan/TwitterChina/idiotbots_dot_com/data/overall_list.json") as f:
+with open("/home/janan/TwitterChina/bigname/data/overall_list.json") as f:
     data = json.load(f)
     for i in data:
         upers_list.append(data[i][20:])
@@ -42,7 +42,7 @@ discrete_list6 = discrete_list[600000:]
 # write each list to a sqlite3 database
 for i in range(7):
     batch_size = 1000
-    conn = sqlite3.connect(f"/home/janan/TwitterChina/idiotbots_dot_com/data/profiles/split_list{i}.db")
+    conn = sqlite3.connect(f"/home/janan/TwitterChina/bigname/data/profiles/split_list{i}.db")
     cursor = conn.cursor()
     cursor.execute("CREATE TABLE IF NOT EXISTS following_names (user TEXT)")
     for j in range(0, len(eval(f"discrete_list{i}")), batch_size):
@@ -57,24 +57,24 @@ for i in range(7):
 
 
 # write each list to a txt file
-# with open("/home/janan/TwitterChina/idiotbots_dot_com/data/profiles/split_list0.txt", "w") as f:
+# with open("/home/janan/TwitterChina/bigname/data/profiles/split_list0.txt", "w") as f:
 #     for i in discrete_list0:
 #         f.write(i + "\n")
-# with open("/home/janan/TwitterChina/idiotbots_dot_com/data/profiles/split_list1.txt", "w") as f:
+# with open("/home/janan/TwitterChina/bigname/data/profiles/split_list1.txt", "w") as f:
 #     for i in discrete_list1:
 #         f.write(i + "\n")
-# with open("/home/janan/TwitterChina/idiotbots_dot_com/data/profiles/split_list2.txt", "w") as f:
+# with open("/home/janan/TwitterChina/bigname/data/profiles/split_list2.txt", "w") as f:
 #     for i in discrete_list2:
 #         f.write(i + "\n")
-# with open("/home/janan/TwitterChina/idiotbots_dot_com/data/profiles/split_list3.txt", "w") as f:
+# with open("/home/janan/TwitterChina/bigname/data/profiles/split_list3.txt", "w") as f:
 #     for i in discrete_list3:
 #         f.write(i + "\n")
-# with open("/home/janan/TwitterChina/idiotbots_dot_com/data/profiles/split_list4.txt", "w") as f:
+# with open("/home/janan/TwitterChina/bigname/data/profiles/split_list4.txt", "w") as f:
 #     for i in discrete_list4:
 #         f.write(i + "\n")
-# with open("/home/janan/TwitterChina/idiotbots_dot_com/data/profiles/split_list5.txt", "w") as f:
+# with open("/home/janan/TwitterChina/bigname/data/profiles/split_list5.txt", "w") as f:
 #     for i in discrete_list5:
 #         f.write(i + "\n")
-# with open("/home/janan/TwitterChina/idiotbots_dot_com/data/profiles/split_list6.txt", "w") as f:
+# with open("/home/janan/TwitterChina/bigname/data/profiles/split_list6.txt", "w") as f:
 #     for i in discrete_list6:
 #         f.write(i + "\n")

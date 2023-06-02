@@ -26,7 +26,7 @@ contain chinese words or chinese related images such as chinese flag or Tiananme
 ### Some other considerations:
 
 1. main considerations' weight
-2. taiwan users
+2. traditional chinese users
 3. what is the scope of "relation to china"?
 4. how to deal with the users who have no tweet, no description, no name?
    for example, foreign users who randomly mentioned china?

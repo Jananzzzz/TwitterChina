@@ -1,5 +1,4 @@
 # don't use mv, use cp, then rm
-# what a fucking experience
 import sqlite3
 import json
 import time  
@@ -9,7 +8,7 @@ import os
 import signal
 
 
-dirctory_path = "/home/janan/TwitterChina/idiotbots_dot_com/data/celebrity_data/"
+dirctory_path = "/home/janan/TwitterChina/bigname/data/celebrity_data/"
 username_list = []
 count = 0
 for filename in os.listdir(dirctory_path):
@@ -32,7 +31,7 @@ discrete_list = list(set(username_list))
 print(f"discret following: {len(discrete_list)}")
 
 upers_list = []
-with open("/home/janan/TwitterChina/idiotbots_dot_com/data/overall_list.json") as f:
+with open("/home/janan/TwitterChina/bigname/data/overall_list.json") as f:
     data = json.load(f)
     for i in data:
         upers_list.append(data[i][20:])
@@ -62,7 +61,7 @@ def fetch_all_users0(database):
 # account not exist
 account_not_exist = []
 for i in range(14):
-    users = fetch_all_users(f"idiotbots_dot_com/data/profiles2/split_list{i}.db")
+    users = fetch_all_users(f"bigname/data/profiles2/split_list{i}.db")
     for row in users:
         account_not_exist.append(row[0])
 print(f"account not exist: {len(account_not_exist)}")
@@ -70,7 +69,7 @@ print(f"account not exist: {len(account_not_exist)}")
 # account already crawled
 account_already_crawled = []
 for i in range(2, 14):
-    users = fetch_all_users0(f"idiotbots_dot_com/data/profiles/profile{i}.db")
+    users = fetch_all_users0(f"bigname/data/profiles/profile{i}.db")
     for row in users:
         account_already_crawled.append(row[3])
 print(f"account already crawled: {len(account_already_crawled)}")
@@ -82,7 +81,7 @@ print(f"new_list: {len(new_list)}")
 
 # split the new_list into 16 parts, store them in 16 sqlite3 databases (table name: users, column name: user (TEXT))
 for i in range(16):
-    conn = sqlite3.connect(f"idiotbots_dot_com/data/new_split/split_list{i}.db")
+    conn = sqlite3.connect(f"bigname/data/new_split/split_list{i}.db")
     cursor = conn.cursor()
     cursor.execute("CREATE TABLE IF NOT EXISTS following_names (user TEXT);")
     conn.commit()

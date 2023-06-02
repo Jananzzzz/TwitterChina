@@ -9,7 +9,7 @@ import os
 import signal
 
 
-dirctory_path = "/home/janan/TwitterChina/idiotbots_dot_com/data/celebrity_data/"
+dirctory_path = "/home/janan/TwitterChina/bigname/data/celebrity_data/"
 username_list = []
 count = 0
 for filename in os.listdir(dirctory_path):
@@ -32,7 +32,7 @@ discrete_list = list(set(username_list))
 print(f"discret following: {len(discrete_list)}")
 
 upers_list = []
-with open("/home/janan/TwitterChina/idiotbots_dot_com/data/overall_list.json") as f:
+with open("/home/janan/TwitterChina/bigname/data/overall_list.json") as f:
     data = json.load(f)
     for i in data:
         upers_list.append(data[i][20:])
@@ -60,7 +60,7 @@ def timeout_handler(signum, frame):
 start_time = time.time()
 c = twint.Config()
 c.User_full = True
-c.Database = "/home/janan/TwitterChina/idiotbots_dot_com/data/profiles.db"
+c.Database = "/home/janan/TwitterChina/bigname/data/profiles.db"
 for i in range(len(discrete_list)):
     try:
         signal.signal(signal.SIGALRM, timeout_handler)
@@ -84,7 +84,7 @@ for i in range(len(discrete_list)):
     #     try:
     #         c.Username = username
     #         c.User_full = True
-    #         c.Database = "/home/janan/TwitterChina/idiotbots_dot_com/data/profiles.db"
+    #         c.Database = "/home/janan/TwitterChina/bigname/data/profiles.db"
     #         twint.run.Lookup(c)
     #     except Exception as e:
     #         print(e)

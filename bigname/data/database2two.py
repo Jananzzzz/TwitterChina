@@ -40,7 +40,7 @@ def split_database(input_file, output_file1, output_file2):
 
 if __name__ == "__main__":
     for i in range(7):
-        split_database(f"/home/janan/TwitterChina/idiotbots_dot_com/data/profiles/split_list{i}.db", 
-                       f"/home/janan/TwitterChina/idiotbots_dot_com/data/profiles2/split_list{i}.db", 
-                       f"/home/janan/TwitterChina/idiotbots_dot_com/data/profiles2/split_list{i+7}.db")
+        split_database(f"/home/janan/TwitterChina/bigname/data/profiles/split_list{i}.db", 
+                       f"/home/janan/TwitterChina/bigname/data/profiles2/split_list{i}.db", 
+                       f"/home/janan/TwitterChina/bigname/data/profiles2/split_list{i+7}.db")
         print(f"Splitting profile{i}.db completed.")

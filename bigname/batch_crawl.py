@@ -6,7 +6,7 @@ import subprocess
 
 def form_list(list_name):
     list = []
-    folder_path = f"/home/janan/TwitterChina/idiotbots_dot_com/data/{list_name}"
+    folder_path = f"/home/janan/TwitterChina/bigname/data/{list_name}"
     file_list = os.listdir(folder_path)
     for file_name in file_list:
         file_path = os.path.join(folder_path, file_name)
@@ -16,7 +16,7 @@ def form_list(list_name):
                 if user_info[user_name] not in list:
                     list.append(user_info[user_name])
     
-    # with open(f"/home/janan/TwitterChina/idiotbots_dot_com/data/{list_name}_list.json", "w") as f:
+    # with open(f"/home/janan/TwitterChina/bigname/data/{list_name}_list.json", "w") as f:
     #     dict = {}
     #     for idx, link in enumerate(list):
     #         dict[f"{idx}"] = link
@@ -52,7 +52,7 @@ user_list = [
 ]
 
 
-command_template = "twint -u {user} --database idiotbots_dot_com/data/celebrity_data/{user}.db --following > /dev/null 2>&1"
+command_template = "twint -u {user} --database bigname/data/celebrity_data/{user}.db --following > /dev/null 2>&1"
 
 # create a cycle that will cycle through the list of users indefinitely
 user_cycle = itertools.cycle(username_list)
@@ -107,14 +107,14 @@ try:
 except Exception as e:
     print(e)
 
-with open(f"/home/janan/TwitterChina/idiotbots_dot_com/data/celebrity_data/finished_list.json", "w") as f: 
+with open(f"/home/janan/TwitterChina/bigname/data/celebrity_data/finished_list.json", "w") as f: 
     dict = {} 
     for idx, user in enumerate(already_finished): 
         dict[f"{idx}"] = user 
     json_data = json.dumps(dict, indent=4) 
     f.write(json_data)
 
-with open(f"/home/janan/TwitterChina/idiotbots_dot_com/data/celebrity_data/failed_list.json", "w") as f:
+with open(f"/home/janan/TwitterChina/bigname/data/celebrity_data/failed_list.json", "w") as f:
     dict = {}
     for idx, user in enumerate(failed):
         dict[f"{idx}"] = user
