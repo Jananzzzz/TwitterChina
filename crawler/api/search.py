@@ -26,7 +26,7 @@ for tweet in response.data:
 # query = "covid -is:retweet"
 # query0 = "covid OR covid19 is:retweet"
 # query1 = "covid OR covid19 -is:retweet"
-# query2 = "xijinping -is:retweet"
+# query2 = "bboczeng -is:retweet"
 # query3 = "(from:bboczeng) until:2022-03-04 since:2022-01-01" # need elevated api access.
 # query4 = "(from:bboczeng)"
 

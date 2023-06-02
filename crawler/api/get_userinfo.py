@@ -1,9 +1,10 @@
 import requests
 import json
+import config
 
 # To set your enviornment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
-bearer_token = "AAAAAAAAAAAAAAAAAAAAAFFLlAEAAAAA71tnDgI6vXrQ9%2BGnMKuXg7cZfG0%3DMtIPdyqSY4tQv0oDcf6KJx939IkYJYAuzhFUon3IJuMc4RmT7N"
+bearer_token = config.bear_token
 
 
 def create_url(username_list):
@@ -67,7 +68,7 @@ def get_user_info(username_list):
 
 if __name__ == "__main__":
     username_list = [
-        "fananshi",
+        "elonmusk",
     ]
     # get_uid(username_list)
     print(get_user_info(username_list))

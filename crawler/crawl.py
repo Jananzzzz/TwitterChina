@@ -15,10 +15,7 @@ option.add_experimental_option("excludeSwitches", ['enable-automation', 'enable-
 driver = webdriver.Chrome(options=option)
 
 username_list = [
-    "tinyfool",
-    "bboczeng",
     "haoel",
-    "miableem",
 ]
 
 for user in username_list:
