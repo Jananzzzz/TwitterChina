@@ -46,11 +46,9 @@ def check_location(location):
     location1 = location.split(" ")
     for i in location0:
         if i.lower() in china_locations or i in china_locations_in_chinese_character:
-            print(i)
             return True
     for j in location1:
         if j.lower() in china_locations or j in china_locations_in_chinese_character:
-            print(i)
             return True
     if location is None:
         return False
@@ -103,6 +101,8 @@ def check_chinese(user):
     # if location is true
     if check_location(user["location"]):
         return True
+    elif check_japanese_character(user["location"]):
+        return False
     elif not check_chinese_character(user["name"]) and not check_chinese_character(user['bio']):
         return False
     elif not check_japanese_character(user["name"]) and not check_korean_character(user["name"]) and not check_japanese_character(user['bio']) and not check_korean_character(user['bio']):
@@ -158,48 +158,50 @@ def distribution(users):
     # plt to plot
     plt.bar(x, y)
     # plt.xticks(rotation=45)
-    plt.yticks(range(0, 300000, 10000))
+    plt.yticks(range(0, 120000, 10000))
     plt.xlabel("followers")
     plt.ylabel("number of users")
     plt.title("followers distribution")
     # add y value upon each bar
     for a, b in zip(x, y):
         plt.text(a, b+0.05, '%.0f' % b, ha='center', va= 'bottom',fontsize=11)
+    # show and save to file
     plt.show()
+    plt.savefig("images/followers_distribution.png")
+    
 
 if __name__=="__main__":
     not_exist = [
-        'dishouru',
-        'silosrc',
-        'asukastark0123',
     ]
     check_exist = [
     ]
     for user in check_exist:
         check_existence(user)
 
-    # users = fetch_all_users("bigname/data/profiles/profile_test.db")
+    users = fetch_all_users("bigname/data/profiles/profile_test.db")
 
+    print("|rank|name|")
+    print("|---|---|")
     
-    # chinese_users = []
-    # for row in users:
-    #     user = {
-    #         "name": row[2],
-    #         "username": row[3],
-    #         "bio": row[4],
-    #         "location": row[5],
-    #         "tweet": row[9],
-    #         "following": row[10],
-    #         "followers": row[11],
-    #     } 
-    #     if check_chinese(user):
-    #         chinese_users.append(row)
+    chinese_users = []
+    for row in users:
+        user = {
+            "name": row[2],
+            "username": row[3],
+            "bio": row[4],
+            "location": row[5],
+            "tweet": row[9],
+            "following": row[10],
+            "followers": row[11],
+        } 
+        if check_chinese(user):
+            chinese_users.append(row)
         
 
-    # chinese_users.sort(key=lambda x: x[11], reverse=True)
-    # for i in range(200):
-    #     print(i, chinese_users[i][2], chinese_users[i][3], chinese_users[i][11])
-    # print(f"chinese users:{len(chinese_users)}")
+    chinese_users.sort(key=lambda x: x[11], reverse=True)
+    for i in range(200):
+        print("|" + str(i) + "|" + "[" + chinese_users[i][2] + "](" + "https://twitter.com/" + chinese_users[i][3] + ")|")
+    print(f"chinese users:{len(chinese_users)}")
 
 
-    # distribution(chinese_users)
+    distribution(chinese_users)
